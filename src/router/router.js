@@ -89,11 +89,12 @@ export default [{
             }, {
                 path: 'points',
                 component: points,
-            }, {
-                path: 'service',
-                component: service,
             }]
         }, //个人信息页
+        {
+            path: 'service',
+            component: service,
+        },//服务中心
         {
             path: '/forget',
             component: forget

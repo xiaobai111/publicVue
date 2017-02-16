@@ -1,7 +1,14 @@
  <template>
   <div class="rating_page">
-        <head-top head-title="帐户信息" go-back='true'></head-top>
-        <section>账户信息页</section>
+        <head-top head-title="账户信息" go-back='true'></head-top>
+        <section class="headportrait">
+            <h2>头像</h2>
+            <div>
+                <span></span>
+                <span></span>
+            </div>
+        </section>
+
     </div>
 </template>
 
@@ -39,7 +46,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: #fff;
+        background-color: #f2f2f2;
         z-index: 202;
         padding-top: 1.95rem;
         p, span{

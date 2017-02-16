@@ -9,14 +9,14 @@
                     </svg>
                 </span>
                 <div class="user-info">
-                    <p>3adc5bfcd</p>
+                    <p>{{username}}</p>
                     <p>
                         <span class="user-icon">
                             <svg class="icon-mobile" fill="#fff">
                                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#mobile"></use>
                             </svg>
                         </span>
-                        <span class="icon-mobile-number">15800319949</span>
+                        <span class="icon-mobile-number">{{mobile}}</span>
                     </p>
                 </div>
                 <span class="arrow">
@@ -29,15 +29,15 @@
         <section class="info-data">
             <ul class="clear">
                 <router-link to="/profile/balance" tag="li" class="info-data-link">
-                    <span class="info-data-top"><b>0.00</b>元</span>
+                    <span class="info-data-top"><b>{{balance}}</b>元</span>
                     <span class="info-data-bottom">我的余额</span>
                 </router-link>
                 <router-link to="/profile/benefit" tag="li" class="info-data-link">
-                    <span class="info-data-top"><b>1</b>个</span>
+                    <span class="info-data-top"><b>{{count}}</b>个</span>
                     <span class="info-data-bottom">我的优惠</span>
                 </router-link>
                 <router-link to="/profile/points" tag="li" class="info-data-link">
-                    <span class="info-data-top"><b>1010</b>分</span>
+                    <span class="info-data-top"><b>{{pointNumber}}</b>分</span>
                     <span class="info-data-bottom">我的积分</span>
                 </router-link>
             </ul>
@@ -94,7 +94,7 @@
         </section>
         <section class="profile-1reTe">
             <!-- 服务中心 -->
-            <router-link to='/profile/service' class="myorder">
+            <router-link to='/service' class="myorder">
                 <aside>
                     <svg fill="#4aa5f0">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#service"></use>
@@ -140,13 +140,23 @@ export default {
     data(){
         return{
             profiletitle: '我的',
-            count : '',       //优惠券个数
-            pontNumber : '',  //积分
+            getUserinfo: {},        //得到数据 
+            username: '',           //用户名
+            mobile: '',             //电话号码
+            balance: '',            //我的余额
+            count : '',             //优惠券个数
+            pointNumber : '',       //积分数
         }
     },
 
     mounted(){
-        console.log(this.userInfo)
+        this.getUserinfo=this.userInfo;
+
+        this.username=this.getUserinfo.username;
+        this.mobile=this.getUserinfo.mobile;
+        this.balance=this.getUserinfo.balance;
+        this.count=this.getUserinfo.gift_amount;
+        this.pointNumber=this.getUserinfo.point;
     },
 
     components:{

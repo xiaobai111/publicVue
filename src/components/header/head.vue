@@ -69,6 +69,8 @@
         left: 0.4rem;
         @include wh(0.6rem, 0.8rem);
         @include ct;
+        display:flex;
+        align-items: center;
     }
     .head_login{
         right: 0.55rem;
