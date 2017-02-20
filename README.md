@@ -28,15 +28,35 @@ vue2 + vue-rotuer2 + vuex + webpack + ES6/7 + fetch + sass + flex + svg + http-p
 - [x] 登陆、注册 -- 完成
 - [x] 修改密码 -- 完成
 - [x] 个人中心 -- 完成
+- [x] 发送短信、语音验证 -- 完成
+- [x] 下单功能 -- 完成 ✨✨🎉🎉
+- [x] 订单列表 -- 完成
+- [ ] 订单详情
 - [ ] 帐户信息
+- [ ] 上传头像，修改用户名
+- [ ] 积分商城
 - [ ] 服务中心
 - [ ] 添加、删除、修改收货地址
-- [ ] 订单列表
-- [ ] 下单功能
 - [ ] 付款(很难实现)
 
 
-说明：因为并不是elm官方，而且因为要开代理，必须在pc端打开，所以预计最多只能做到下单这一步，下单成功后可以在手机客户端查看并付款。
+# 总结
+
+1、因为并不是elm官方，而且因为要开代理，必须在pc端打开，所以预计最多只能做到下单这一步，下单成功后可以在手机客户端查看并付款。
+
+2、目前下单功能已经实现✨✨🎉🎉，下单功能完全采用官网真实数据，可以控制官网发短信或者打电话到指定的手机号码，下单后可以在手机App中查看并且付款。
+
+3、一般涉及到money的网页逻辑都比较复杂，尤其像饿了么这样一个开放的平台，商家和食品种类繁多，页面与页面之间交互复杂，在写到 购物车 和 下单 功能时众多的数据和逻辑一度让人很头疼，又没有设计和接口文档，只能一步步摸索。
+
+4、vue因其轻量级的框架在中小型项目中表现亮眼，在大型单页面应用中因为vuex的存在，表现依然出色，在处理复杂交互逻辑的时候，vuex的存在是不可或缺的。所以说利用 vue + vuex 完全可以去做大型的单页面项目。
+
+5、在项目中并没有使用太多的插件，所有功能尽可能自己实现，对插件依赖太多并不是一件好事。
+
+6、项目写到现在，从 登陆注册到、首页、搜索、商家列表、购物车、下单、订单列表、个人中心 一个流程走完之后、不但对vue的理解更深一层，而且对以后掌控大型项目的时候也有非常多的帮助，做一个实际的项目才能对自己有很大的提升。
+
+7、项目已完成的页面共 22 个，头部尾部以及其他公用组件 8 个，最主要的购物下单功能已经实现，预计全部完成后总页面数在 35 个左右。
+
+
 
 # 项目布局
 ```
@@ -64,6 +84,17 @@ vue2 + vue-rotuer2 + vuex + webpack + ES6/7 + fetch + sass + flex + svg + http-p
 |       |-- city                     // 当前城市页
 |		|-- food                 	 // 食品筛选排序页
 |		|-- confirmOrder             // 确认订单页
+|		  |--children
+|			|--invoice			     //	选择发票页
+|			|--remark			     //	订单备注页
+|			|--payment			     //	付款页
+|			|--userValidation		 //	用户验证页
+|			|--chooseAddress         //	选择地址页
+|		      |--children
+|				|--addAddress        //	添加地址页
+|				  |--children
+|					|--searchAddress // 搜索地址页
+|       |-- find                     // 发现页
 |       |-- forget                   // 忘记密码，修改密码页
 |       |-- home                     // 首页
 |       |-- login                    // 登陆注册页
@@ -71,17 +102,18 @@ vue2 + vue-rotuer2 + vuex + webpack + ES6/7 + fetch + sass + flex + svg + http-p
 |       |-- order                    // 订单列表页
 |       |-- profile                  // 个人中心
 |			|--children
-|				|--balance			 //我的余额
-|				|--benefit			 //我的优惠
-|				|--info				 //帐户信息
-|				|--points			 //我的积分
-|				|--service			 //服务中心
+|				|--balance			 // 我的余额
+|				|--benefit			 // 我的优惠
+|				|--info				 // 帐户信息
+|				|--points			 // 我的积分
+|				|--service			 // 服务中心
 |       |-- search                   // 搜索页
 |       |-- shop                     // 商铺筛选页
 |			|-- children             
-|				|-- foodDetail       // 单个商铺信息页   
-|				|-- shopDetail       // 商铺信息页
-|				|-- shopSafe         // 商铺认证信息页          
+|			  	|-- foodDetail       // 商铺信息页     
+|			  	|-- shopDetail       // 单个商铺信息页
+|					|-- children             
+|				  		|-- shopSafe // 商铺认证信息页     
 |       |-- vipcard                  // vip办理页
 |
 |   |-- plugins                      // 引用的插件
@@ -213,11 +245,31 @@ npm run build
 
 <img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/reset.png" width="365" height="619"/>
 
+## 个人中心
 
-#### 其他页面陆续开发中。。。
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/profile.png" width="365" height="619"/>
 
 
-# 总结
+## 确认订单页
+
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/confirm1.png" width="365" height="619"/>
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/confirm2.png" width="365" height="619"/>
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/confirm3.png" width="365" height="619"/>
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/confirm4.png" width="365" height="619"/>
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/confirm5.png" width="365" height="619"/>
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/confirm6.png" width="365" height="619"/>
+
+## 订单列表页
+
+<img src="https://github.com/bailicangdu/vue2-elm/blob/master/screenshots/order.png" width="365" height="619"/>
+
+
+
+
+#### 其他页面正在开发中。。。
+
+
+# 最后
 
 >  本项目主要用于熟悉如何用 vue2 构建一个中大型项目
 
@@ -225,11 +277,10 @@ npm run build
 
 >  开发环境 macOS 10.12.3  Chrome 55
 
->  推荐另一个 react + redux 开源项目，对react感兴趣的朋友赶紧去看看。[地址在这里](https://github.com/bailicangdu/react-pxq)
+>  如有问题请直接在 Issues 中提，或者可以加我的QQ 1264889788
+
+>  另外推荐一个 react + redux 开源项目，对react感兴趣的朋友赶紧去看看。[地址在这里](https://github.com/bailicangdu/react-pxq)
 
 
 
-
-
-
-如果觉得不错，请star一下吧 😊
+##### 如果觉得不错，请star一下吧 😊

@@ -1,9 +1,10 @@
 <template>
-    <div>
+    <div class="profile_page">
         <head-top go-back='true' :head-title="profiletitle"></head-top>
         <section class="profile-number">
-            <router-link to="/profile/info" class="profile-link">
-                <span class="privateImage">
+            <router-link :to="getUserinfo? '/profile/info' : '/login'" class="profile-link">
+                <img :src="getImgPath(this.avatar)" class="privateImage" v-if="this.avatar">
+                <span class="privateImage" v-else>
                     <svg class="privateImage-svg">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#avatar-default"></use>
                     </svg>
@@ -126,6 +127,7 @@
                 </div>
             </router-link>
         </section>
+        <foot-guide></foot-guide>
         <transition name="router-slid">
             <router-view></router-view>
         </transition>
@@ -134,33 +136,41 @@
 
 <script>
 import headTop from '../../components/header/head'
+import footGuide from '../../components/footer/footGuide'
 import {mapState} from 'vuex'
+import {getImgPath} from '../../components/common/mixin'
 
 export default {
     data(){
         return{
             profiletitle: '我的',
             getUserinfo: {},        //得到数据 
-            username: '',           //用户名
-            mobile: '',             //电话号码
-            balance: '',            //我的余额
-            count : '',             //优惠券个数
-            pointNumber : '',       //积分数
+            username: '登陆/注册',           //用户名
+            mobile: '登陆后享受更多特权',             //电话号码
+            balance: '0',            //我的余额
+            count : '0',             //优惠券个数
+            pointNumber : '0',       //积分数
+            avatar: '',             //头像地址
         }
     },
 
     mounted(){
-        this.getUserinfo=this.userInfo;
-
-        this.username=this.getUserinfo.username;
-        this.mobile=this.getUserinfo.mobile;
-        this.balance=this.getUserinfo.balance;
-        this.count=this.getUserinfo.gift_amount;
-        this.pointNumber=this.getUserinfo.point;
+        this.getUserinfo = this.userInfo;
+        if (this.userInfo) {
+            this.avatar = this.getUserinfo.avatar;
+            this.username = this.getUserinfo.username;
+            this.mobile = this.getUserinfo.mobile;
+            this.balance = this.getUserinfo.balance;
+            this.count = this.getUserinfo.gift_amount;
+            this.pointNumber = this.getUserinfo.point;
+        }
     },
 
+    mixins: [getImgPath],
+
     components:{
-        headTop
+        headTop,
+        footGuide,
     },
 
     computed:{
@@ -172,14 +182,31 @@ export default {
     methods:{
 
     },
+    watch: {
+        userInfo: function (){
+            this.getUserinfo = this.userInfo;
+            if (this.userInfo) {
+                this.avatar = this.getUserinfo.avatar;
+                this.username = this.getUserinfo.username;
+                this.mobile = this.getUserinfo.mobile ;
+                this.balance = this.getUserinfo.balance;
+                this.count = this.getUserinfo.gift_amount;
+                this.pointNumber = this.getUserinfo.point;
+            }
+        }
+    }
 }
 
 </script>
 
 <style lang="scss" scoped>
    @import '../../style/mixin'; 
-
-   
+    
+    .profile_page{
+        p, span{
+            font-family: Helvetica Neue,Tahoma,Arial;
+        }
+    }
    .profile-number{
         padding-top:1.95rem;
         .profile-link{

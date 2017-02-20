@@ -24,7 +24,7 @@
 </template>
 
 <script>
-    import {mapState, mapMutations} from 'vuex'
+    import {mapState, mapActions} from 'vuex'
     export default {
     	data(){
             return{
@@ -32,11 +32,11 @@
             }
         },
         created(){
-            //获取本地存储的用户信息
-            this.GET_USERINFO();
+            //获取用户信息
+            this.getUserInfo();
         },
         mounted(){
-
+            
         },
         props: ['signinUp', 'headTitle', 'goBack'],
         computed: {
@@ -45,8 +45,8 @@
             ]),
         },
         methods: {
-            ...mapMutations([
-                'GET_USERINFO',
+            ...mapActions([
+                'getUserInfo'
             ]),
         },
 
@@ -55,7 +55,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../../style/mixin.scss';
+    @import '../../style/mixin';
 
     #head_top{
         background-color: $blue;
@@ -69,8 +69,6 @@
         left: 0.4rem;
         @include wh(0.6rem, 0.8rem);
         @include ct;
-        display:flex;
-        align-items: center;
     }
     .head_login{
         right: 0.55rem;

@@ -35,6 +35,7 @@
 	    	</header>
 	    	<shop-list v-if="hasGetData" :geohash="geohash"></shop-list>
     	</div>
+    	<foot-guide></foot-guide>
     </div>    
 </template>
 
@@ -42,6 +43,7 @@
 import {mapMutations} from 'vuex'
 import {imgBaseUrl} from '../../config/env'
 import headTop from '../../components/header/head'
+import footGuide from '../../components/footer/footGuide'
 import shopList from '../../components/common/shoplist'
 import {msiteAdress, msiteFoodTypes, msiteShopList} from '../../service/getData'
 import '../../plugins/swiper.min.js'
@@ -59,6 +61,8 @@ export default {
     },
     async beforeMount(){
 		this.geohash = this.$route.query.geohash || 'wtw3sm0q087';
+		//保存geohash 到vuex
+		this.SAVE_GEOHASH(this.geohash);
     	//获取位置信息
     	let res = await msiteAdress(this.geohash);
     	this.msietTitle = res.name;
@@ -88,14 +92,15 @@ export default {
     },
     components: {
     	headTop,
-    	shopList
+    	shopList,
+    	footGuide,
     },
     computed: {
 
     },
     methods: {
     	...mapMutations([
-    		'RECORD_ADDRESS'
+    		'RECORD_ADDRESS', 'SAVE_GEOHASH'
     	]),
     	// 解码url地址，求去restaurant_category_id值
     	getCategoryId(url){
