@@ -1,5 +1,5 @@
  <template>
-  <div class="info_page">
+  <div class="rating_page">
         <head-top head-title="账户信息" go-back='true'></head-top>
         <section class="profile-info">
             <section class="headportrait">
@@ -89,7 +89,8 @@
     export default {
       data(){
             return{
-    
+                infoname:'',    //用户名
+                infotel:'',     //用户手机
             }
         },
         created(){
@@ -110,7 +111,7 @@
 <style lang="scss" scoped>
     @import '../../../style/mixin.scss';
   
-    .info_page{
+    .rating_page{
         position: absolute;
         top: 0;
         left: 0;
