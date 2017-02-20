@@ -203,6 +203,7 @@
         }
         .exitlogin:active{
             opacity:.8;
+            background:#C1C1C1;
         }
     }
     .info-router{
