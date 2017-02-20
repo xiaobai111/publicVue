@@ -141,7 +141,7 @@ export default {
 		state.cartList[shopid] = null;
 		state.cartList = Object.assign({}, state.cartList);
 		setStore('buyCart', state.cartList);
-	},
+	}, 
 	// 记录用户信息
 	[RECORD_USERINFO](state, info) {
 		state.userInfo = info;

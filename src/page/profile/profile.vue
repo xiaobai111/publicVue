@@ -201,7 +201,6 @@ export default {
 
 <style lang="scss" scoped>
    @import '../../style/mixin'; 
-    
     .profile_page{
         p, span{
             font-family: Helvetica Neue,Tahoma,Arial;
