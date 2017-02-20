@@ -22,7 +22,7 @@
         mounted(){
       
         },
-        props: ['showHide','alertText'],
+        props: ['alertText'],
         methods: {
             closeTip(){
                 this.$emit('closeTip')
@@ -32,7 +32,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../../style/mixin.scss';
+    @import '../../style/mixin';
 	@keyframes tipMove{
        0%   { transform: scale(1) }
        35%  { transform: scale(.8) }
@@ -55,7 +55,7 @@
         margin-left: -6rem;
         width: 12rem;
         animation: tipMove .4s ;
-        background-color: #fff;
+        background-color: rgba(255,255,255,1);
         border: 1px;
         padding-top: .6rem;
         display: flex;

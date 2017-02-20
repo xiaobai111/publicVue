@@ -1,5 +1,5 @@
  <template>
-  <div class="rating_page">
+  <div class="info_page">
         <head-top head-title="账户信息" go-back='true'></head-top>
         <section class="profile-info">
             <section class="headportrait">
@@ -110,7 +110,7 @@
 <style lang="scss" scoped>
     @import '../../../style/mixin.scss';
   
-    .rating_page{
+    .info_page{
         position: absolute;
         top: 0;
         left: 0;

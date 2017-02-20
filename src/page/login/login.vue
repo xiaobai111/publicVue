@@ -98,6 +98,7 @@
             },
             async getCaptchaCode(){
                 let res = await getcaptchas();
+                
                 this.captchaCodeImg = 'https://mainsite-restapi.ele.me/v1/captchas/' + res.code;
             },
             async getVerifyCode(){
@@ -109,7 +110,7 @@
                             clearInterval(this.timer)
                         }
                     }, 1000)
-                    let exsis = await checkExsis(this.phoneNumber, this.accountType);
+                    let exsis = await checkExsis(this.phoneNumber, 'mobile');
                     if (exsis.message) {
                         this.showAlert = true;
                         this.alertText = exsis.message;
@@ -176,7 +177,7 @@
 </script>
 
 <style lang="scss" scoped>
-    @import '../../style/mixin.scss';
+    @import '../../style/mixin';
 
     .loginContainer{
         padding-top: 1.95rem;
