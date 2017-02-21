@@ -18,6 +18,8 @@ import {
 	CHANGE_ORDER_PARAM,
 	ORDER_SUCCESS,
 	SAVE_SHOPID,
+	SAVE_ORDER,
+	OUT_LOGIN,
 } from './mutation-types.js'
 import {
 	setStore,
@@ -141,19 +143,22 @@ export default {
 		state.cartList[shopid] = null;
 		state.cartList = Object.assign({}, state.cartList);
 		setStore('buyCart', state.cartList);
-	}, 
+	},
 	// 记录用户信息
 	[RECORD_USERINFO](state, info) {
 		state.userInfo = info;
+		state.login = true;
 		let validity = 30;
 		let now = new Date();
 		now.setTime(now.getTime() + validity * 24 * 60 * 60 * 1000);
-
 		document.cookie = "USERID=" + info.user_id + ";expires=" + now.toGMTString();
 		document.cookie = "SID=huRyTRd9QLij7NkbpHJoj3PQrx1eRiO6bAiw" + ";expires=" + now.toGMTString();
 	},
 	//获取用户信息存入vuex
 	[GET_USERINFO](state, info) {
+		if (!state.login) {
+			return
+		}
 		if (!info.message) {
 			state.userInfo = info;
 		} else {
@@ -216,4 +221,13 @@ export default {
 	[ORDER_SUCCESS](state, order) {
 		state.orderMessage = order;
 	},
-	}
+	//进入订单详情页前保存该订单信息
+	[SAVE_ORDER](state, orderDetail) {
+		state.orderDetail = orderDetail;
+	},
+	//退出登陆
+	[OUT_LOGIN](state) {
+		state.userInfo = null;
+		state.login = false;
+	},
+}

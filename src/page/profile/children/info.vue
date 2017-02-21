@@ -62,7 +62,7 @@
             <section class="bind-phone">
                 安全设置
             </section>
-            <router-link to="" class="info-router">
+            <router-link to="/forget" class="info-router">
                 <section class="headportrait headportraitwo headportraithree">
                         <h2>登录密码</h2>
                         <div class="headportrait-div">
@@ -88,9 +88,9 @@
                 <h2>是否退出登录</h2>
                 <div class="sa-botton">
                     <button class="waiting" @click="waitingThing">再等等</button>
-                    <router-link to="/profile" style="display:inline-block;">
-                        <button class="quitlogin">退出登录</button>
-                    </router-link>
+                    <div style="display:inline-block;">
+                        <button class="quitlogin"  @click="outLogin">退出登录</button>
+                    </div>
                 </div>
             </section>
         </section>
@@ -98,6 +98,7 @@
 </template>
 
 <script>
+    import {mapMutations} from 'vuex'
     import headTop from '../../../components/header/head'
     import {getImgPath} from '../../../components/common/mixin'
 
@@ -114,6 +115,9 @@
         created(){
 
         },
+        beforeDestroy(){
+            clearTimeout(this.timer)
+        },
         mixins: [getImgPath],
         components: {
             headTop, 
@@ -121,19 +125,28 @@
         },
         props:[],
         methods: {
-            
+            ...mapMutations([
+                'OUT_LOGIN'
+            ]),
             exitlogin(){
                 this.show=true;
                 this.isEnter=true;
                 this.isLeave=false;
             },
             waitingThing(){
+                clearTimeout(this.timer)
                 this.isEnter=false;
                 this.isLeave=true;
-                setTimeout( () =>{
+                this.timer = setTimeout(() =>{
+                    clearTimeout(this.timer)
                     this.show=false;
                 },200)
-            }
+            },
+            outLogin(){
+                this.OUT_LOGIN();
+                this.waitingThing();
+                this.$router.go(-1);
+            },
         }
     }
 </script>
