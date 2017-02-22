@@ -27,7 +27,7 @@ const state = {
 	orderMessage: null,
 	orderDetail: null,
 	login: true,
-	resetname:'',//重置用户名
+	imgPath:null
 }
 
 export default new Vuex.Store({
@@ -35,5 +35,4 @@ export default new Vuex.Store({
 	getters,
 	actions,
 	mutations,
-
 })

@@ -21,6 +21,7 @@ import {
 	SAVE_ORDER,
 	OUT_LOGIN,
 	RETSET_NAME,
+	SAVE_AVANDER,
 } from './mutation-types.js'
 import {
 	setStore,
@@ -157,6 +158,9 @@ export default {
 	},
 	//获取用户信息存入vuex
 	[GET_USERINFO](state, info) {
+		if (state.userInfo && (state.userInfo.username !== info.username)) {
+			return;
+		};
 		if (!state.login) {
 			return
 		}
@@ -167,8 +171,8 @@ export default {
 		}
 	},
 	//修改用户名
-	[RETSET_NAME](state,{userInfo,username}) {
-		state.userInfo = Object.assign({},userInfo,{userName: username})
+	[RETSET_NAME](state,username) {
+		state.userInfo = Object.assign({}, state.userInfo,{username})
 	},
 	//保存商铺id
 	[SAVE_SHOPID](state, shopid) {
@@ -234,5 +238,9 @@ export default {
 	[OUT_LOGIN](state) {
 		state.userInfo = null;
 		state.login = false;
+	},
+	//退出登陆
+	[SAVE_AVANDER](state, imgPath) {
+		state.imgPath = imgPath;
 	},
 }

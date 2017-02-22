@@ -11,6 +11,6 @@ export default {
 			state
 		}) {
 			let res = await getUser();
-		commit(GET_USERINFO, res)
+			commit(GET_USERINFO, res)
 		},
 }

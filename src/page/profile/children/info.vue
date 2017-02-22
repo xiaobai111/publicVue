@@ -6,7 +6,7 @@
                 <input type="file" class="profileinfopanel-upload">
                 <h2>头像</h2>
                 <div class="headportrait-div">
-                    <img :src="imgBaseUrl + avatarinfo" class="headportrait-div-top" v-if="this.avatarinfo">
+                    <img :src="imgPath" class="headportrait-div-top" v-if="this.avatarinfo">
                     <span class="headportrait-div-top" v-else>
                         <svg class="">
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#avatar-default"></use>
@@ -145,7 +145,7 @@
         props:[],
         computed:{
              ...mapState([
-                'userInfo', 
+                'userInfo', 'imgPath'
             ]),
 
         },

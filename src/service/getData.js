@@ -217,7 +217,7 @@ export const mobileCode = phone => fetch('POST', '/v4/mobile/verify_code/send', 
  * 获取用户信息
  */
 
-export const getUser = () => fetch('GET', '/v1/user', {});
+// export const getUser = () => fetch('GET', '/v1/user', {});
 
 
 
@@ -436,7 +436,7 @@ export const sendLogin = (code, mobile, validate_token) => setpromise(login.user
 // export const checkout = (geohash, entities) => setpromise(confirm.checkout);
 // export const getRemark = (id, sig) => setpromise(confirm.remark);
 // export const getAddress = (id, sig) => setpromise(confirm.addressList);
-// export const getUser = () => setpromise(login.userInfo);
+export const getUser = () => setpromise(login.userInfo);
 // export const getcaptchas = () => setpromise(login.cpatchs);
 // export const searchNearby = keyword => setpromise(confirm.searchAddress);
 // export const postAddAddress = (userId, address, address_detail, geohash, name, phone, phone_bk, poi_type, sex, tag, tag_type) => setpromise(confirm.addAddress);

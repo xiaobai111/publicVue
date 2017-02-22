@@ -63,9 +63,7 @@
                 }
             },
             resetName(){
-                this.userInfo.resetName=this.inputValue;
-                console.log(this.userInfo.resetName);
-                this.RETSET_NAME(this.userInfo.resetName);
+                this.RETSET_NAME(this.inputValue);
                 this.$router.go(-1);
             }
         }

@@ -3,7 +3,7 @@
         <head-top go-back='true' :head-title="profiletitle"></head-top>
         <section class="profile-number">
             <router-link :to="getUserinfo? '/profile/info' : '/login'" class="profile-link">
-                <img :src="imgBaseUrl + avatar" class="privateImage" v-if="this.avatar">
+                <img :src="imgpath" class="privateImage" v-if="this.avatar">
                 <span class="privateImage" v-else>
                     <svg class="privateImage-svg">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#avatar-default"></use>
@@ -137,7 +137,7 @@
 <script>
 import headTop from '../../components/header/head'
 import footGuide from '../../components/footer/footGuide'
-import {mapState} from 'vuex'
+import {mapState, mapMutations} from 'vuex'
 import {imgBaseUrl} from '../../config/env'
 import {getImgPath} from '../../components/common/mixin'
 
@@ -181,10 +181,22 @@ export default {
          ...mapState([
             'userInfo', 
         ]),
+        imgpath:function () {
+            let path;
+            if(this.avatar.indexOf('/') !==-1){
+                path = imgBaseUrl +　this.avatar;
+            }else{
+                path = this.getImgPath(this.avatar)
+            }
+            this.SAVE_AVANDER(path);
+            return path;
+        }
     },
 
     methods:{
-
+        ...mapMutations([
+            'SAVE_AVANDER'
+        ]),
     },
     watch: {
         userInfo: function (){
