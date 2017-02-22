@@ -13,5 +13,4 @@ export default {
 			let res = await getUser();
 		commit(GET_USERINFO, res)
 		},
-
 }

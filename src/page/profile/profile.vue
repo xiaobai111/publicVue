@@ -95,7 +95,7 @@
         </section>
         <section class="profile-1reTe">
             <!-- 服务中心 -->
-            <router-link to='/service' class="myorder">
+            <router-link to='/profile/service' class="myorder">
                 <aside>
                     <svg fill="#4aa5f0">
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#service"></use>
@@ -147,6 +147,7 @@ export default {
             profiletitle: '我的',
             getUserinfo: {},        //得到数据 
             username: '登陆/注册',           //用户名
+            resetname: '',
             mobile: '登陆后享受更多特权',             //电话号码
             balance: '0',            //我的余额
             count : '0',             //优惠券个数
@@ -160,7 +161,8 @@ export default {
         this.getUserinfo = this.userInfo;
         if (this.userInfo) {
             this.avatar = this.getUserinfo.avatar;
-            this.username = this.getUserinfo.username;
+            //this.resetname=this.userInfo.resetname; 
+            this.username =this.getUserinfo.username;
             this.mobile = this.getUserinfo.mobile;
             this.balance = this.getUserinfo.balance;
             this.count = this.getUserinfo.gift_amount;

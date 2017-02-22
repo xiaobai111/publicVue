@@ -27,6 +27,7 @@ const state = {
 	orderMessage: null,
 	orderDetail: null,
 	login: true,
+	resetname:'',//重置用户名
 }
 
 export default new Vuex.Store({

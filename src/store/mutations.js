@@ -20,6 +20,7 @@ import {
 	SAVE_SHOPID,
 	SAVE_ORDER,
 	OUT_LOGIN,
+	RETSET_NAME,
 } from './mutation-types.js'
 import {
 	setStore,
@@ -164,6 +165,10 @@ export default {
 		} else {
 			state.userInfo = null;
 		}
+	},
+	//修改用户名
+	[RETSET_NAME](state,{userInfo,username}) {
+		state.userInfo = Object.assign({},userInfo,{userName: username})
 	},
 	//保存商铺id
 	[SAVE_SHOPID](state, shopid) {

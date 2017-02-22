@@ -63,7 +63,7 @@
                 rightPhoneNumber: false, //输入的手机号码是否符合要求
                 validate_token: null, //获取短信时返回的验证值，登陆时需要
                 computedTime: 0, //倒数记时
-                uerInfo: null, //获取到的用户信息
+                userInfo: null, //获取到的用户信息
                 userAccount: null, //用户名
                 passWord: null, //密码
                 captchaCodeImg: null, //验证码地址
