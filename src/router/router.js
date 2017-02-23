@@ -25,6 +25,8 @@ const shopDetail = r => require.ensure([], () => r(require('../page/shop/childre
 const shopSafe = r => require.ensure([], () => r(require('../page/shop/children/children/shopSafe')), 'shopSafe')
 const info = r => require.ensure([], () => r(require('../page/profile/children/info')), 'info')
 const setusername = r => require.ensure([], () => r(require('../page/profile/children/setusername')), 'setusername')
+const address = r => require.ensure([], () => r(require('../page/profile/children/children/address')), 'address')
+const add = r => require.ensure([], () => r(require('../page/profile/children/children/children/add')), 'add')
 const balance = r => require.ensure([], () => r(require('../page/profile/children/balance')), 'balance')
 const benefit = r => require.ensure([], () => r(require('../page/profile/children/benefit')), 'benefit')
 const points = r => require.ensure([], () => r(require('../page/profile/children/points')), 'points')
@@ -124,6 +126,14 @@ export default [{
             children: [{
                 path: 'info', //个人信息详情页
                 component: info,
+                children: [{
+                    path: 'address',
+                    component: address,     //编辑地址
+                    children:[{
+                        path:'add',
+                        component:add,
+                    }]
+                }]
             },
             {
                 path: 'setusername',

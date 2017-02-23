@@ -32,7 +32,7 @@
                     </div>
                 </section>
             </router-link>
-            <router-link to="" class="info-router">
+            <router-link to="/profile/info/address" class="info-router">
                 <section class="headportrait headportraitwo headportraithree">
                         <h2>收货地址</h2>
                         <div class="headportrait-div">
@@ -124,10 +124,10 @@
         created(){
             this.getUsermes=this.userInfo;
             if(this.userInfo){ 
-                //this.resetname=this.userInfo.resetname;
                 this.username=this.getUsermes.username;
                 this.infotel=this.getUsermes.mobile;
                 this.avatarinfo=this.getUsermes.avatar;
+                console.log(this.getUsermes.user_id)
             }
         },
         mounted(){

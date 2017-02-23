@@ -456,3 +456,7 @@ export const getUser = () => setpromise(login.userInfo);
 // export const payRequest = (merchantOrderNo, userId) => setpromise(confirm.payDetail);
 export const getOrderList = (user_id, offset) => setpromise(order.orderList);
 export const getOrderDetail = (user_id, orderid) => setpromise(order.orderDetail);
+
+//获取地址
+export const getAddressList = (user_id) => fetch('GET', '/v1/users/'+user_id+'/addresses')
+
