@@ -27,7 +27,8 @@ const state = {
 	orderMessage: null,
 	orderDetail: null,
 	login: true,
-	imgPath:null
+	imgPath:null,
+	removeAddress:null,
 }
 
 export default new Vuex.Store({
